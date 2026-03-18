@@ -1,1 +1,28 @@
-/* Add styles here */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+.lotto-numbers {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+lotto-ball {
+    margin: 0 5px;
+}
+
+#generate-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
