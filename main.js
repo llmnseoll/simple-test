@@ -132,8 +132,9 @@ function loadSettingsUI() {
     elements.breakTime.value = state.settings.breakTime;
 }
 
-function getStudyTimePerDay(fromTime = null) {
+function getStudyTimePerDay(dateStr, fromTime = null) {
     const now = new Date();
+    const todayStr = now.toISOString().split('T')[0];
     const effectiveStartTime = fromTime || state.settings.startTime;
     const start = effectiveStartTime.split(':').map(Number);
     const end = state.settings.endTime.split(':').map(Number);
@@ -141,7 +142,7 @@ function getStudyTimePerDay(fromTime = null) {
     let startMins = start[0] * 60 + start[1];
     const endMins = end[0] * 60 + end[1];
 
-    if (state.selectedDate === now.toISOString().split('T')[0]) {
+    if (dateStr === todayStr) {
         const nowMins = now.getHours() * 60 + now.getMinutes();
         startMins = Math.max(startMins, nowMins);
     }
@@ -168,7 +169,6 @@ function generateInitialPlan(startDateStr = null) {
     let datePointer = new Date(startDate);
     let dayCounter = 0;
     const subjectPattern = [ ["재무회계", "재정학"], ["세법", "원가회계"] ];
-    const dailyTimeBudget = getStudyTimePerDay(state.settings.startTime); 
     const baseWeightToTime = 100;
 
     while (Object.values(subjectTasks).some(tasks => tasks.length > 0)) {
@@ -177,6 +177,7 @@ function generateInitialPlan(startDateStr = null) {
             continue;
         }
         const dateStr = datePointer.toISOString().split('T')[0];
+        const dailyTimeBudget = getStudyTimePerDay(dateStr);
         const [mainSub, minorSub] = subjectPattern[dayCounter % 2];
         let dailyTimeSpent = 0;
         let orderInDay = 0;
@@ -238,7 +239,7 @@ function scheduleReviewTasks(completedTask) {
     REVIEW_INTERVALS.forEach(interval => {
         const reviewDate = getNextWorkday(completionDate, interval-1);
         const reviewDateStr = reviewDate.toISOString().split('T')[0];
-        const reviewTitle = `${completedTask.title.replace(/ \(1/2\)$/, '')}`;
+        const reviewTitle = `${completedTask.title.replace(/ \(1\/2\)$/, '')}`;
         
         const existingReview = state.tasks.find(t => t.type === 'review' && t.originalTaskId === completedTask.id && t.date === reviewDateStr);
 
@@ -249,7 +250,7 @@ function scheduleReviewTasks(completedTask) {
 }
 
 const getTaskWeight = (task) => {
-    const title = task.title.replace(/ \(1/2\)$/, '').replace(/ \(2/2\)$/, '');
+    const title = task.title.replace(/ \(1\/2\)$/, '').replace(/ \(2\/2\)$/, '');
     const item = CURRICULUM_DATA[task.subject]?.find(d => d.title === title);
     let weight = item?.weight || 1;
     if (task.title.includes('(1/2)') || task.title.includes('(2/2)')) {
@@ -265,10 +266,7 @@ function getBalancedDailyTasks(date, timeOverride = null) {
     const manualTasks = allDayTasks.filter(t => t.type === 'manual');
 
     const totalReviewTime = reviewTasks.reduce((sum, task) => sum + task.time, 0);
-    let totalStudyTime = timeOverride !== null ? timeOverride : getStudyTimePerDay(state.settings.startTime); 
-     if (new Date(date) < new Date(new Date().toISOString().split('T')[0])){
-        totalStudyTime = getStudyTimePerDay(state.settings.startTime);
-    }
+    let totalStudyTime = timeOverride !== null ? timeOverride : getStudyTimePerDay(date); 
 
     let studyTimeForCurriculum = totalStudyTime - totalReviewTime;
 
@@ -342,8 +340,8 @@ function adjustFuturePlan(startingFrom) {
 function handleTimeChange(hour) {
     const todayStr = new Date().toISOString().split('T')[0];
     const timeString = `${String(hour).padStart(2, '0')}:00`;
-    let remainingTime = getStudyTimePerDay(timeString);
-    const scheduledTotalTime = getStudyTimePerDay(state.settings.startTime);
+    let remainingTime = getStudyTimePerDay(todayStr, timeString);
+    const scheduledTotalTime = getStudyTimePerDay(todayStr);
     
     let todayTasks = state.tasks.filter(t => t.date === todayStr && t.type === 'curriculum' && !t.completed);
 
@@ -544,19 +542,13 @@ function addChatMessage(text, sender) {
 function renderDailyView(options = {}) {
     elements.taskList.innerHTML = '';
     const isToday = state.selectedDate === new Date().toISOString().split('T')[0];
-    let timeForCalc = null;
-
-    if (isToday) {
-        timeForCalc = options.timeOverride !== undefined ? options.timeOverride : getStudyTimePerDay(new Date().toTimeString().slice(0, 5));
-    } else {
-        timeForCalc = getStudyTimePerDay(state.settings.startTime);
-    }
-    
-    const dayTasks = getBalancedDailyTasks(state.selectedDate, timeForCalc);
+    let timeForCalc = options.timeOverride !== undefined ? options.timeOverride : getStudyTimePerDay(state.selectedDate);
 
     if (dayTasks.length === 0) {
         elements.taskList.innerHTML = '<li class="task-item" style="justify-content:center; color:#999;">계획된 일정이 없습니다.</li>';
     }
+    
+    const dayTasks = getBalancedDailyTasks(state.selectedDate, timeForCalc);
 
     dayTasks.sort((a,b) => a.order - b.order).forEach(task => {
         const li = document.createElement('li');
