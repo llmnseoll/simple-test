@@ -11,7 +11,7 @@
     <div class="app-container">
         <header class="main-header">
             <div class="header-top">
-                <h1><i class="fas fa-graduation-cap"></i> CTA 합격 메이커</h1>
+                <h1><i class="fas fa-heart"></i> CTA 합격 메이커</h1>
                 <div class="exam-countdown" id="exam-countdown">진도 계산 중...</div>
             </div>
             <nav class="view-tabs">
@@ -49,9 +49,7 @@
                         <button id="add-review-task" class="btn btn-outline btn-sm">
                             <i class="fas fa-sync"></i> 복습 추가
                         </button>
-                        <button id="adjust-plan-btn" class="btn btn-secondary btn-sm">
-                            <i class="fas fa-magic"></i> 오늘부터 진도 재조정
-                        </button>
+                        <!-- 'Adjust Plan' button removed in favor of Chat AI -->
                     </div>
                 </section>
 
@@ -103,6 +101,10 @@
                             <label>점심/저녁 시간 (시간)</label>
                             <input type="number" id="break-time" value="2" step="0.5">
                         </div>
+                        <div class="setting-item">
+                            <label>Gemini API Key (AI 코칭용)</label>
+                            <input type="password" id="api-key" placeholder="API Key를 입력하세요 (선택)">
+                        </div>
                         <button id="save-settings-btn" class="btn btn-primary">설정 저장 및 반영</button>
                     </div>
                 </section>
@@ -127,9 +129,28 @@
                 <div id="ai-feedback" class="ai-feedback-text">
                     오늘의 학습을 시작해보세요! 월~금 10:00~17:00은 당신의 집중 골든타임입니다.
                 </div>
-                <button id="get-feedback-btn" class="btn btn-secondary btn-sm">진도 분석 및 자동 조정</button>
             </section>
         </footer>
+
+        <!-- Chat Widget -->
+        <button class="chat-toggle-btn" onclick="toggleChat()">
+            <i class="fas fa-comments"></i>
+        </button>
+        <div class="chat-widget" id="chat-widget">
+            <div class="chat-header">
+                <span>AI 학습 코치</span>
+                <i class="fas fa-times" style="cursor:pointer;" onclick="toggleChat()"></i>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="chat-message bot">
+                    안녕하세요! 학습 일정 조정이 필요하신가요? "진도 수정해줘" 또는 "오늘 늦었어"라고 말씀해주세요.
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="메시지를 입력하세요...">
+                <button class="btn btn-primary btn-sm" onclick="sendMessage()">전송</button>
+            </div>
+        </div>
     </div>
     <script src="main.js"></script>
 </body>
