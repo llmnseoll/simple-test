@@ -192,7 +192,7 @@ const CURRICULUM_DATA = {
         { title: "11-13장 충당금과 준비금", weight: 1.5 },
         { title: "14장 부당행위계산의 부인", weight: 1.8 },
         { title: "15-16장 과세표준과 세액", weight: 1.5 },
-        { title: "국기법 총칙/국세부꽉", weight: 1.0 },
+        { title: "국기법 총칙/국세부과", weight: 1.0 },
         { title: "국기법 납세의무/확장/과세", weight: 1.2 },
         { title: "국기법 국세환급금/불복제도", weight: 0.8 },
         { title: "소득세 총설/이자·배당", weight: 1.0 },
@@ -275,11 +275,27 @@ function init() {
 function loadState() {
     const savedTasks = localStorage.getItem('cta_tasks');
     const savedSettings = localStorage.getItem('cta_settings');
-    if (savedTasks) {
-        state.tasks = JSON.parse(savedTasks);
+
+    try {
+        if (savedTasks && savedTasks !== 'undefined') {
+            state.tasks = JSON.parse(savedTasks);
+        } else {
+            state.tasks = [];
+        }
+    } catch (e) {
+        console.error("손상된 task 데이터를 발견하여 초기화합니다.", e);
+        state.tasks = [];
+        localStorage.removeItem('cta_tasks');
     }
-    if (savedSettings) {
-        state.settings = JSON.parse(savedSettings);
+
+    try {
+        if (savedSettings && savedSettings !== 'undefined') {
+            const parsedSettings = JSON.parse(savedSettings);
+            state.settings = { ...state.settings, ...parsedSettings };
+        } 
+    } catch (e) {
+        console.error("손상된 settings 데이터를 발견하여 기본값으로 재설정합니다.", e);
+        localStorage.removeItem('cta_settings');
     }
 }
 
@@ -400,7 +416,7 @@ function scheduleReviewTasks(completedTask) {
     REVIEW_INTERVALS.forEach(interval => {
         const reviewDate = getNextWorkday(completionDate, interval-1);
         const reviewDateStr = reviewDate.toISOString().split('T')[0];
-        const reviewTitle = `${completedTask.title.replace(/ \\(1/2\\)$/, '')}`;
+        const reviewTitle = `${completedTask.title.replace(/ \(1/2\)$/, '')}`;
         
         const existingReview = state.tasks.find(t => t.type === 'review' && t.originalTaskId === completedTask.id && t.date === reviewDateStr);
 
@@ -411,7 +427,7 @@ function scheduleReviewTasks(completedTask) {
 }
 
 const getTaskWeight = (task) => {
-    const title = task.title.replace(/ \\(1/2\\)$/, '').replace(/ \\(2/2\\)$/, '');
+    const title = task.title.replace(/ \(1/2\)$/, '').replace(/ \(2/2\)$/, '');
     const item = CURRICULUM_DATA[task.subject]?.find(d => d.title === title);
     let weight = item?.weight || 1;
     if (task.title.includes('(1/2)') || task.title.includes('(2/2)')) {
