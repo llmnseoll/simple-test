@@ -1,34 +1,28 @@
 const CURRICULUM_DATA = {
     "재무회계": [
-        "2장 수익: 갱신선택권 ~", "3장 건설계약", "4장 현금흐름표", "5장 재고자산과 농림어업",
-        "6장 유형자산", "7장 차입원가", "8장 무형자산", "9장 금융부채", "10장 충당부채와 보고기간후사건",
-        "11장 자본", "12장 금융자산(1): 지분상품과 채무상품", "13장 금융자산(2): 현금 및 수취채권",
-        "14장 복합금융상품", "15장 주식기준보상", "16장 리스", "17장 법인세회계", "18장 주당이익", "19장 회계변경과 오류수정"
+        "2장 수익(~p100)", "2장 수익(p101~끝)", "3장 건설계약", "4장 현금흐름표(1)", "4장 현금흐름표(2)",
+        "5장 재고자산과 농림어업", "6장 유형자산(1)", "6장 유형자산(2)", "7장 차입원가", "8장 무형자산",
+        "9장 금융부채", "10장 충당부채와 보고기간후사건", "11장 자본(1)", "11장 자본(2)",
+        "12장 금융자산(지분/채무)", "13장 금융자산(현금/수취채권)", "14장 복합금융상품", "15장 주식기준보상",
+        "16장 리스(1)", "16장 리스(2)", "17장 법인세회계(1)", "17장 법인세회계(2)", "18장 주당이익", "19장 회계변경과 오류수정"
     ],
     "세법": [
-        "법인세 Chapter 5: 손금(1) - 5.4 과다경비 및 업무무관비용 ~", "법인세 Chapter 6: 손금(2) - 접대비/기부금",
-        "법인세 Chapter 7: 손금(3) - 감가상각비", "법인세 Chapter 8: 손금(4) - 지급이자",
-        "법인세 Chapter 9: 손익의 귀속시기", "법인세 Chapter 10: 자산의 취득과 평가",
-        "법인세 Chapter 11-13: 충당금과 준비금", "법인세 Chapter 14: 부당행위계산의 부인",
-        "법인세 Chapter 15-16: 과세표준과 세액/신고납부", "국세기본법: 총칙/국세부과의 원칙",
-        "국세기본법: 납세의무/확장/과세", "국세기본법: 국세환급금/불복제도",
-        "소득세: 총설/이자·배당소득", "소득세: 사업소득", "소득세: 근로·연금·기타소득/소득금액특례",
-        "소득세: 과세표준/세액계산/퇴직/양도소득/신고납부", "부가가치세: 총설/과세거래",
-        "부가가치세: 영세율과 면세/세금계산서", "부가가치세: 과세표준과 세액계산",
-        "부가가치세: 신고와 납부/간이과세"
+        "법인세 5장 손금(~p250)", "법인세 5장 손금(p251~끝)", "6장 접대비/기부금", "7장 감가상각비(1)", "7장 감가상각비(2)",
+        "8장 지급이자", "9장 손익의 귀속시기", "10장 자산의 취득과 평가", "11-13장 충당금과 준비금", "14장 부당행위계산의 부인(1)",
+        "14장 부당행위계산의 부인(2)", "15-16장 과세표준과 세액", "국기법 총칙/국세부과", "국기법 납세의무/확장/과세",
+        "국기법 국세환급금/불복제도", "소득세 총설/이자·배당", "소득세 사업소득(1)", "소득세 사업소득(2)",
+        "소득세 근로·연금·기타소득", "소득세 과세표준/세액계산", "소득세 퇴직/양도소득/신고납부", "부가세 총설/과세거래",
+        "부가세 영세율과 면세/세금계산서", "부가세 과세표준과 세액계산", "부가세 신고와 납부/간이과세"
     ],
     "원가회계": [
-        "Chapter 7: 공손품회계 ~", "Chapter 8: 연산품과 부산물", "Chapter 9: 전부/변동/초변동원가계산",
-        "Chapter 10: 활동기준원가계산(ABC)", "Chapter 11-12: 원가추정/CVP분석",
-        "Chapter 13-14: 관련원가분석/자본예산", "Chapter 16: 종합예산",
-        "Chapter 17-18: 표준원가계산", "Chapter 19-21: 성과평가/대체가격결정",
-        "Chapter 22-24: 전략적 원가관리/BSC"
+        "7장 공손품회계", "8장 연산품과 부산물", "9장 전부/변동/초변동원가계산", "10장 활동기준원가계산(ABC)",
+        "11-12장 원가추정/CVP분석(1)", "11-12장 원가추정/CVP분석(2)", "13-14장 관련원가분석/자본예산(1)", "13-14장 관련원가분석/자본예산(2)",
+        "16장 종합예산", "17-18장 표준원가계산(1)", "17-18장 표준원가계산(2)", "19-21장 성과평가/대체가격결정", "22-24장 전략적 원가관리"
     ],
     "재정학": [
-        "제2편 외부성/공공재/공공선택: 핵심문제 18번 ~", "제3편 공공지출이론/비용편익분석",
-        "제4편 조세의 기초/전가와 귀착", "제5편 조세의 초과부담/최적과세론",
-        "제6편 개별조세이론/조세의 경제적 효과", "제7편 소득분배/사회보장/공공요금",
-        "제7편 공채론/지방재정"
+        "2편 외부성/공공재(~p150)", "2편 공공선택이론(p151~끝)", "3편 공공지출이론/비용편익분석(1)", "3편 공공지출이론/비용편익분석(2)",
+        "4편 조세의 기초/전가와 귀착(1)", "4편 조세의 기초/전가와 귀착(2)", "5편 조세의 초과부담/최적과세론", "6편 개별조세이론/조세의 경제적 효과(1)",
+        "6편 개별조세이론/조세의 경제적 효과(2)", "7편 소득분배/사회보장", "7편 공채론/지방재정"
     ]
 };
 
@@ -52,7 +46,6 @@ const elements = {
     progressBar: document.getElementById('daily-progress-bar'),
     percentageText: document.getElementById('daily-percentage'),
     remainingTime: document.getElementById('remaining-time'),
-    aiFeedback: document.getElementById('ai-feedback'),
     tabBtns: document.querySelectorAll('.tab-btn'),
     viewContents: document.querySelectorAll('.view-content'),
     addTaskForm: document.getElementById('add-task-form'),
@@ -74,7 +67,6 @@ function init() {
     setupEventListeners();
     renderDailyView();
     updateGlobalProgress();
-    generateAIFeedback(); 
 }
 
 function loadSettingsUI() {
@@ -110,12 +102,7 @@ function generateInitialPlan(startDateStr = null) {
         }
 
         const dateStr = datePointer.toISOString().split('T')[0];
-        let mainSub, minorSub;
-        if (dayCounter % 2 === 0) {
-            [mainSub, minorSub] = ["세법", "재정학"];
-        } else {
-            [mainSub, minorSub] = ["재무회계", "원가회계"];
-        }
+        const [mainSub, minorSub] = (dayCounter % 2 === 0) ? ["세법", "재정학"] : ["재무회계", "원가회계"];
 
         if (subjectIndices[mainSub] < CURRICULUM_DATA[mainSub].length) {
             taskPool.push(createTask(dateStr, mainSub, CURRICULUM_DATA[mainSub][subjectIndices[mainSub]], mainSubTime, 'curriculum', dayCounter * 10));
@@ -153,30 +140,23 @@ function createTask(date, subject, title, time, type, order, originalId = null) 
 
 // --- 지능형 기능 --- //
 function scheduleReviewTasks(completedTask) {
-    if (completedTask.type !== 'curriculum') return; // 기본 커리큘럼 항목만 복습
+    if (completedTask.type !== 'curriculum') return;
 
     const completionDate = new Date(state.selectedDate);
-
     REVIEW_INTERVALS.forEach(interval => {
         const reviewDate = new Date(completionDate);
         reviewDate.setDate(reviewDate.getDate() + interval);
         
-        // 주말이면 다음 월요일로 조정
         if (reviewDate.getDay() === 0) reviewDate.setDate(reviewDate.getDate() + 1);
         if (reviewDate.getDay() === 6) reviewDate.setDate(reviewDate.getDate() + 2);
 
         const reviewDateStr = reviewDate.toISOString().split('T')[0];
-        const reviewTitle = `[${interval}일차 복습] ${completedTask.title}`;
+        const reviewTitle = `${completedTask.title}`;
         
-        // 기존 복습이 있는지 확인 (ID 기반)
-        const existingReview = state.tasks.find(t => 
-            t.type === 'review' && 
-            t.originalTaskId === completedTask.id && 
-            t.title.includes(`[${interval}일차 복습]`)
-        );
+        const existingReview = state.tasks.find(t => t.type === 'review' && t.originalTaskId === completedTask.id && t.date === reviewDateStr);
 
         if (!existingReview) {
-             state.tasks.push(createTask(reviewDateStr, completedTask.subject, reviewTitle, 30, 'review', 9000, completedTask.id));
+             state.tasks.push(createTask(reviewDateStr, completedTask.subject, reviewTitle, 30, 'review', 9000 + interval, completedTask.id));
         }
     });
 }
@@ -187,22 +167,27 @@ function adjustForLateStart() {
 
     if (todayTasks.length >= 2) {
         todayTasks.sort((a, b) => a.time - b.time);
-        const taskToRemove = todayTasks[0];
+        const taskToRemove = todayTasks[0]; // 중요도 낮은 과목 제거
         state.tasks = state.tasks.filter(t => t.id !== taskToRemove.id);
+        
+        // 남은 과목 시간 재조정
+        const remainingTask = todayTasks.find(t => t.id !== taskToRemove.id);
+        if(remainingTask) remainingTask.time = getStudyTimePerDay();
+
         saveState();
         renderDailyView();
-        return `현실적인 학습을 위해 오늘은 1과목에 집중하도록 계획을 조정했어요. (${taskToRemove.subject} 제외)`;
+        return `오늘은 1과목에 집중하도록 계획을 조정했어요. (${taskToRemove.subject} 제외)`;
     }
-    return "이미 계획이 1과목이거나 조정할 일정이 없네요. 바로 시작하세요!";
+    return "이미 1과목만 남았거나, 조정할 일정이 없네요. 바로 시작하세요!";
 }
 
-function adjustFuturePlan(fromToday = true) {
-    const startDate = fromToday ? new Date() : new Date(state.selectedDate);
+function adjustFuturePlan() {
+    const today = new Date();
     const uncompleted = state.tasks.filter(t => t.type === 'curriculum' && !t.completed).sort((a, b) => a.order - b.order);
     if (uncompleted.length === 0) return;
 
     const uniqueDayGroups = [...new Set(uncompleted.map(t => Math.floor(t.order / 10)))].sort((a,b)=>a-b);
-    let currentProcessingDate = startDate;
+    let currentProcessingDate = today;
 
     uniqueDayGroups.forEach(dayGroup => {
         while (currentProcessingDate.getDay() === 0 || currentProcessingDate.getDay() === 6) {
@@ -216,7 +201,6 @@ function adjustFuturePlan(fromToday = true) {
     saveState();
     renderDailyView();
 }
-
 
 // --- UI & 이벤트 리스너 --- //
 function setupEventListeners() {
@@ -248,20 +232,23 @@ function setupEventListeners() {
             breakTime: parseFloat(elements.breakTime.value),
         };
         localStorage.setItem('cta_settings', JSON.stringify(state.settings));
-        alert("설정이 저장되었습니다. 진도를 초기화하여 새 학습 시간을 반영해주세요.");
+        alert("설정이 저장되었습니다. 새 학습 시간을 적용하려면 '진도 전체 초기화'를 진행해주세요.");
         renderDailyView();
     });
 
     elements.resetCurriculumBtn.addEventListener('click', () => {
-        if (confirm("모든 진도 데이터를 삭제하고 현재 설정에 맞춰 새로 생성하시겠습니까?")) {
+        if (confirm("모든 학습 기록과 복습 일정이 삭제됩니다. 현재 설정에 맞춰 전체 계획을 새로 생성하시겠습니까?")) {
             generateInitialPlan();
             renderDailyView();
             updateGlobalProgress();
         }
     });
 
-    elements.chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
+    elements.chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.isComposing) { // 한영 변환 중 Enter 방지
+            e.preventDefault();
+            sendMessage();
+        }
     });
 }
 
@@ -280,7 +267,7 @@ function sendMessage() {
             const adjustmentMessage = adjustForLateStart();
             addChatMessage(`네, 알겠습니다! 늦은 시작도 괜찮아요. 중요한 건 '시작' 그 자체입니다. 🔥 ${adjustmentMessage}`, 'bot');
         } else if (isAdjustmentRequest) {
-            adjustFuturePlan(true);
+            adjustFuturePlan();
              addChatMessage("네, 알겠습니다! 📅 오늘부터 밀린 일정을 재배치했습니다. 주간 계획을 확인해보세요.", 'bot');
         } else if (lowerText.includes("안녕")) {
             addChatMessage("안녕하세요! 오늘도 합격을 위해 달려봅시다. 🔥", 'bot');
@@ -288,6 +275,14 @@ function sendMessage() {
             addChatMessage("제가 이해할 수 있는 말은 '진도 수정해줘' 또는 '오후 2시에 시작할게' 같은 거예요.", 'bot');
         }
     }, 500);
+}
+
+function addChatMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = `chat-message ${sender}`;
+    div.textContent = text;
+    elements.chatBody.appendChild(div);
+    elements.chatBody.scrollTop = elements.chatBody.scrollHeight;
 }
 
 function renderDailyView() {
@@ -300,7 +295,7 @@ function renderDailyView() {
 
     dayTasks.forEach(task => {
         const li = document.createElement('li');
-        li.className = `task-item ${task.completed ? 'completed' : ''} type-${task.type}`;
+        li.className = `task-item type-${task.type} ${task.completed ? 'completed' : ''}`;
         li.innerHTML = `
             <div class="task-checkbox" onclick="toggleTask('${task.id}')"></div>
             <div class="task-info">
@@ -327,7 +322,6 @@ function toggleTask(id) {
         saveState();
         renderDailyView();
         updateGlobalProgress();
-        generateAIFeedback();
     }
 }
 
@@ -339,13 +333,14 @@ function deleteTask(id) {
 }
 
 function updateDailyStats() {
+    const totalTime = getStudyTimePerDay();
+    elements.remainingTime.textContent = `${(totalTime / 60).toFixed(1)}시간`;
+
     const dayTasks = state.tasks.filter(t => t.date === state.selectedDate);
     const completed = dayTasks.filter(t => t.completed);
     const percent = dayTasks.length > 0 ? Math.round((completed.length / dayTasks.length) * 100) : 0;
     elements.progressBar.style.width = `${percent}%`;
     elements.percentageText.textContent = `${percent}%`;
-    const totalTime = getStudyTimePerDay();
-    elements.remainingTime.textContent = `${(totalTime / 60).toFixed(1)}시간`;
 }
 
 function switchView(viewName) {
@@ -361,37 +356,23 @@ function renderWeeklyView() {
     for (let i = 0; i < 14; i++) {
         const d = new Date(today);
         d.setDate(today.getDate() + i);
+        if (d.getDay() === 0 || d.getDay() === 6) continue;
+
         const dStr = d.toISOString().split('T')[0];
         const dayTasks = state.tasks.filter(t => t.date === dStr);
-        if (dayTasks.length > 0 || (d.getDay() !== 0 && d.getDay() !== 6)) {
-            const completed = dayTasks.filter(t => t.completed).length;
-            const item = document.createElement('div');
-            item.className = 'goal-item';
-            const dayName = ['일','월','화','수','목','금','토'][d.getDay()];
-            item.innerHTML = `
-                <div class="goal-info">
-                    <h4>${d.getMonth()+1}/${d.getDate()} (${dayName})</h4>
-                    <p>${dayTasks.length > 0 ? dayTasks.map(t => `<span class="tiny-tag type-${t.type}">${t.subject}</span> ${t.title}`).join('<br>') : '자율학습'}</p>
-                </div>
-                <div class="goal-progress">${completed}/${dayTasks.length}</div>
-            `;
-            container.appendChild(item);
-        }
+        const completed = dayTasks.filter(t => t.completed).length;
+        const item = document.createElement('div');
+        item.className = 'goal-item';
+        const dayName = ['일','월','화','수','목','금','토'][d.getDay()];
+        item.innerHTML = `
+            <div class="goal-info">
+                <h4>${d.getMonth()+1}/${d.getDate()} (${dayName})</h4>
+                <p>${dayTasks.length > 0 ? dayTasks.map(t => `<span class="tiny-tag type-${t.type}">${t.subject}</span> ${t.title}`).join('<br>') : '자율학습'}</p>
+            </div>
+            <div class="goal-progress">${completed}/${dayTasks.length}</div>
+        `;
+        container.appendChild(item);
     }
-}
-
-function generateAIFeedback() {
-    const today = new Date().toISOString().split('T')[0];
-    const uncompleted = state.tasks.filter(t => t.date < today && t.type === 'curriculum' && !t.completed);
-    let feedback = "";
-    if (uncompleted.length > 5) {
-        feedback = `진도가 ${uncompleted.length}개나 밀렸어요! AI 코치에게 '진도 수정해줘'라고 말해서 계획을 재설정하세요.`;
-    } else if (uncompleted.length > 0) {
-        feedback = `진도가 ${uncompleted.length}개 밀렸네요. 조금만 더 힘내세요! '진도 수정'을 요청할 수 있습니다.`
-    } else {
-        feedback = "훌륭합니다! 계획대로 잘 진행하고 계십니다. 이 속도를 유지하세요!";
-    }
-    elements.aiFeedback.textContent = feedback;
 }
 
 function saveState() {
@@ -409,7 +390,13 @@ function updateGlobalProgress() {
 // --- Global Access --- //
 window.toggleTask = toggleTask;
 window.deleteTask = deleteTask;
-window.toggleChat = () => elements.chatWidget.classList.toggle('open');
+window.toggleChat = () => {
+    const widget = elements.chatWidget;
+    widget.classList.toggle('open');
+    if(widget.classList.contains('open')) {
+        elements.chatInput.focus();
+    }
+}
 window.sendMessage = sendMessage;
 
 init();
