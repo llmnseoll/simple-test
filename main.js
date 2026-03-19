@@ -70,7 +70,7 @@ const REVIEW_INTERVALS = [1, 3, 7, 14, 30];
 
 let state = {
     tasks: [],
-    settings: { startTime: "09:00", endTime: "22:00", breakTime: 2 },
+    settings: { startTime: "09:00", endTime: "22:00", breakTime: 2, subjectPattern: [ ["재무회계", "재정학"], ["세법", "원가회계"] ] },
     selectedDate: new Date().toISOString().split('T')[0],
     currentTaskToComplete: null
 };
@@ -117,7 +117,7 @@ function loadState() {
         state.tasks = JSON.parse(savedTasks);
     }
     if (savedSettings) {
-        state.settings = JSON.parse(savedSettings);
+        state.settings = { ...state.settings, ...JSON.parse(savedSettings) };
     }
 }
 
@@ -168,7 +168,7 @@ function generateInitialPlan(startDateStr = null) {
 
     let datePointer = new Date(startDate);
     let dayCounter = 0;
-    const subjectPattern = [ ["재무회계", "재정학"], ["세법", "원가회계"] ];
+    const subjectPattern = state.settings.subjectPattern;
     const baseWeightToTime = 100;
 
     while (Object.values(subjectTasks).some(tasks => tasks.length > 0)) {
@@ -182,6 +182,7 @@ function generateInitialPlan(startDateStr = null) {
         let dailyTimeSpent = 0;
         let orderInDay = 0;
 
+        // Main subject
         while (subjectTasks[mainSub].length > 0 && (dailyTimeSpent / dailyTimeBudget) < 0.65) {
             const task = subjectTasks[mainSub][0]; 
             const taskTime = task.weight * baseWeightToTime;
@@ -191,6 +192,7 @@ function generateInitialPlan(startDateStr = null) {
             taskPool.push(createTask(dateStr, mainSub, task.title, taskTime, 'curriculum', dayCounter * 10 + orderInDay++));
         }
 
+        // Minor subject
         while (subjectTasks[minorSub] && subjectTasks[minorSub].length > 0) {
             const task = subjectTasks[minorSub][0]; 
             const taskTime = task.weight * baseWeightToTime;
@@ -467,10 +469,17 @@ function setupEventListeners() {
     });
 
     elements.saveSettingsBtn.addEventListener('click', () => {
+        const newSubjectPattern = [ ["재무회계", "재정학"], ["세법", "원가회계"] ];
+        // Example logic to change pattern - you can expand this
+        if (confirm("재무회계와 세법을 다른 날에 공부하는 패턴으로 변경하시겠습니까? (학습량이 많은 날에는 함께 편성될 수 있습니다.)")) {
+            newSubjectPattern = [ ["재무회계", "원가회계"], ["세법", "재정학"] ];
+        } 
+
         state.settings = {
             startTime: elements.startTime.value,
             endTime: elements.endTime.value,
             breakTime: parseFloat(elements.breakTime.value),
+            subjectPattern: newSubjectPattern
         };
         saveState();
         alert("설정이 저장되었습니다. 새 학습 시간을 적용하려면 '진도 전체 초기화'를 진행해주세요.");
@@ -541,14 +550,12 @@ function addChatMessage(text, sender) {
 
 function renderDailyView(options = {}) {
     elements.taskList.innerHTML = '';
-    const isToday = state.selectedDate === new Date().toISOString().split('T')[0];
-    let timeForCalc = options.timeOverride !== undefined ? options.timeOverride : getStudyTimePerDay(state.selectedDate);
+    const timeForCalc = options.timeOverride !== undefined ? options.timeOverride : getStudyTimePerDay(state.selectedDate);
+    const dayTasks = getBalancedDailyTasks(state.selectedDate, timeForCalc);
 
     if (dayTasks.length === 0) {
         elements.taskList.innerHTML = '<li class="task-item" style="justify-content:center; color:#999;">계획된 일정이 없습니다.</li>';
     }
-    
-    const dayTasks = getBalancedDailyTasks(state.selectedDate, timeForCalc);
 
     dayTasks.sort((a,b) => a.order - b.order).forEach(task => {
         const li = document.createElement('li');
@@ -671,7 +678,7 @@ function updateGlobalProgress() {
     const curriculumTasks = state.tasks.filter(t => t.type === 'curriculum');
     if (curriculumTasks.length === 0) return;
 
-    const totalWeight = CURRICULUM_DATA.재무회계.concat(CURRICULUM_DATA.세법, CURRICULUM_DATA.원가회계, CURRICULUM_DATA.재정학).reduce((sum, item) => sum + item.weight, 0);
+    const totalWeight = Object.values(CURRICULUM_DATA).flat().reduce((sum, item) => sum + item.weight, 0);
     let completedWeight = 0;
     state.tasks.filter(t => t.completed && t.type === 'curriculum').forEach(task => {
         completedWeight += getTaskWeight(task);
