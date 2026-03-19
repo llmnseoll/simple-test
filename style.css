@@ -1,3 +1,4 @@
+
 :root {
     /* Pastel Theme Palette */
     --primary-color: #FFB7B2;    /* Pastel Pink */
@@ -143,6 +144,16 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 18px;
+}
+
+.daily-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#skip-day-btn i {
+    margin-right: 4px;
 }
 
 h2 {
@@ -373,8 +384,8 @@ h2 i {
     color: white; 
 }
 .btn-sm { 
-    padding: 8px 16px; 
-    font-size: 0.85rem; 
+    padding: 8px 12px; 
+    font-size: 0.8rem; 
 }
 
 .btn:hover {
