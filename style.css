@@ -1,14 +1,18 @@
 :root {
-    --primary: #1a237e; /* Deep Navy */
-    --accent: #ffc107;  /* Gold */
-    --accent-dark: #ffa000;
-    --success: #2e7d32;
-    --bg: #f5f5f7;
+    --primary: #b9e0ff;       /* Soft Sky Blue */
+    --primary-dark: #97c9f0;
+    --accent: #ffd6e8;        /* Pastel Pink */
+    --accent-dark: #ffb6c1;
+    --secondary: #e9e4ff;     /* Lavender */
+    --success: #e1f8dc;       /* Mint Green */
+    --bg: #fdfdfd;            /* Off White */
     --card: #ffffff;
-    --text: #2c3e50;
-    --text-muted: #7f8c8d;
-    --border: #e0e0e0;
-    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+    --text: #5a5a5a;          /* Soft Charcoal */
+    --text-muted: #a0a0a0;
+    --border: #f0f0f0;
+    --shadow: 0 8px 30px rgba(0,0,0,0.03);
+    --radius-lg: 24px;
+    --radius-sm: 12px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,117 +22,141 @@ body {
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.5;
+    background-image: 
+        radial-gradient(#f0f0f0 1px, transparent 1px),
+        radial-gradient(#f0f0f0 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
 }
 
 .app-container {
-    max-width: 500px;
+    max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-bottom: 30px;
 }
 
 /* Header & Navigation */
 .main-header {
-    background: linear-gradient(135deg, var(--primary), #303f9f);
-    color: white;
-    padding: 20px 20px 10px;
+    background: #ffffff;
+    color: var(--text);
+    padding: 30px 20px 10px;
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 1px solid var(--border);
 }
 
 .header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .header-top h1 {
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+    letter-spacing: -0.8px;
 }
 
 .exam-countdown {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 4px 12px;
+    background: var(--secondary);
+    color: #7c6fd1;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .view-tabs {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    background: #f8f9fa;
+    padding: 5px;
+    border-radius: 16px;
 }
 
 .tab-btn {
     flex: 1;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-muted);
     padding: 10px 0;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 700;
     cursor: pointer;
-    border-bottom: 3px solid transparent;
+    border-radius: 12px;
+    transition: all 0.2s ease;
 }
 
 .tab-btn.active {
-    color: var(--accent);
-    border-bottom: 3px solid var(--accent);
+    background: white;
+    color: var(--primary-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 /* Cards */
 .card {
     background: var(--card);
-    border-radius: 16px;
-    padding: 20px;
+    border-radius: var(--radius-lg);
+    padding: 24px;
     margin: 15px;
     box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.01);
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .card h2 {
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 800;
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #444;
 }
 
 /* Progress */
 .progress-bar-container {
-    height: 8px;
-    background: #edf2f7;
-    border-radius: 4px;
-    margin: 10px 0;
+    height: 14px;
+    background: #f0f2f5;
+    border-radius: 20px;
+    margin: 12px 0;
     overflow: hidden;
 }
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent-dark));
-    border-radius: 4px;
-    transition: width 0.5s ease;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 20px;
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Forms & Inputs */
 .compact-form input, .compact-form select {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 10px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
     font-family: inherit;
+    background: #fdfdfd;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.compact-form input:focus {
+    border-color: var(--primary);
 }
 
 .form-row {
@@ -138,24 +166,40 @@ body {
 
 .small-date {
     border: none;
-    background: #f8f9fa;
-    padding: 5px 10px;
-    border-radius: 8px;
-    font-size: 0.8rem;
+    background: var(--secondary);
+    color: #7c6fd1;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
 }
 
-/* Task List */
+/* Task List - Scheduler/Planner Style */
 .task-list {
     list-style: none;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .task-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f1f1f1;
+    gap: 15px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.task-item.completed {
+    background: #fcfcfc;
+    border-color: #eee;
 }
 
 .task-item.completed .task-title {
@@ -164,91 +208,146 @@ body {
 }
 
 .task-checkbox {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary);
-    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    border: 2.5px solid var(--primary);
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.2s;
 }
 
 .task-item.completed .task-checkbox {
     background: var(--primary);
+    border-color: var(--primary);
     position: relative;
 }
 
 .task-item.completed .task-checkbox::after {
     content: '✓';
     color: white;
-    font-size: 12px;
+    font-size: 14px;
     position: absolute;
-    top: 0; left: 3px;
+    top: -1px; left: 3px;
+    font-weight: 900;
 }
 
 .task-info { flex: 1; }
-.task-title { font-weight: 600; font-size: 0.95rem; }
-.task-meta { font-size: 0.75rem; color: var(--text-muted); }
+.task-title { font-weight: 700; font-size: 0.95rem; color: #444; }
+.task-meta { 
+    font-size: 0.75rem; 
+    color: var(--text-muted); 
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.badge {
+    padding: 2px 8px;
+    background: #f0f0f0;
+    border-radius: 6px;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+/* Subject Tags - Pastel */
+.subject-tag {
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.subject-재무회계 { color: #5b9bd5; background: #e6f3ff; }
+.subject-세법 { color: #e06c9f; background: #fff0f5; }
+.subject-원가회계 { color: #5ab38d; background: #e8f7f0; }
+.subject-재정학 { color: #d4a017; background: #fff9e6; }
 
 /* Buttons */
 .btn {
-    padding: 12px 20px;
+    padding: 14px 20px;
     border: none;
-    border-radius: 10px;
-    font-weight: 700;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
     cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
 }
 
-.btn-primary { background: var(--primary); color: white; }
-.btn-secondary { background: var(--accent); color: var(--primary); }
-.btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
-.btn-sm { padding: 8px 15px; font-size: 0.8rem; }
+.btn:active { transform: scale(0.98); }
+
+.btn-primary { background: var(--primary); color: #5b9bd5; }
+.btn-secondary { background: var(--accent); color: #b06b8a; }
+.btn-outline { 
+    background: #ffffff; 
+    border: 2px solid var(--primary); 
+    color: var(--primary-dark); 
+}
+
+.btn-sm { padding: 10px 16px; font-size: 0.8rem; }
 
 /* Views */
 .view-content { display: none; }
-.view-content.active { display: block; }
+.view-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* Footer & Feedback */
 .app-footer {
     margin-top: auto;
-    padding-bottom: 20px;
 }
 
 .feedback-card {
-    background: #f8f9ff;
-    border: 1px solid #e1e7ff;
+    background: #fffcfd;
+    border: 1px solid var(--accent);
 }
 
 .ai-header {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 10px;
+    font-weight: 800;
+    color: #e06c9f;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
 }
 
 .ai-feedback-text {
     font-size: 0.85rem;
-    color: #4a5568;
-    margin-bottom: 15px;
-    line-height: 1.6;
+    color: #666;
+    margin-bottom: 18px;
+    line-height: 1.7;
+    background: white;
+    padding: 15px;
+    border-radius: 16px;
 }
 
-/* Goals List (Weekly/Monthly/Yearly) */
+/* Weekly Goals List */
 .goals-list {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
 .goal-item {
     background: #fdfdfd;
-    padding: 15px;
-    border-radius: 12px;
-    border-left: 4px solid var(--primary);
+    padding: 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-left: 6px solid var(--primary);
 }
 
-.goal-info h4 { font-size: 0.9rem; }
-.goal-progress { font-size: 0.8rem; font-weight: 700; color: var(--primary); }
+.goal-info h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 4px; }
+.goal-info p { font-size: 0.75rem; color: var(--text-muted); }
+.goal-progress { font-size: 0.85rem; font-weight: 800; color: var(--primary-dark); }
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+    .card { padding: 20px; margin: 12px; }
+    .main-header { padding: 20px 15px 10px; }
+}
