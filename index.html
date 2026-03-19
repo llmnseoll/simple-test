@@ -11,7 +11,7 @@
     <div class="app-container">
         <header class="main-header">
             <div class="header-top">
-                <h1><i class="fas fa-heart"></i> CTA 합격 메이커</h1>
+                <h1><i class="fas fa-brain"></i> CTA 합격 메이커</h1>
                 <div class="exam-countdown" id="exam-countdown">진도 계산 중...</div>
             </div>
             <nav class="view-tabs">
@@ -26,14 +26,14 @@
             <div id="daily-view" class="view-content active">
                 <section class="card summary-card">
                     <div class="progress-info">
-                        <h2>오늘의 목표</h2>
+                        <h2>오늘의 목표 달성도</h2>
                         <div class="progress-bar-container">
                             <div id="daily-progress-bar" class="progress-bar" style="width: 0%"></div>
                         </div>
                         <span id="daily-percentage">0%</span>
                     </div>
                     <div class="study-time-info">
-                        <p><i class="far fa-clock"></i> 가용 시간: <span id="remaining-time">--</span></p>
+                        <p><i class="far fa-clock"></i> 총 학습 시간: <span id="remaining-time">--</span></p>
                     </div>
                 </section>
 
@@ -45,12 +45,6 @@
                     <ul id="task-list" class="task-list">
                         <!-- Tasks will be injected here -->
                     </ul>
-                    <div class="button-group">
-                        <button id="add-review-task" class="btn btn-outline btn-sm">
-                            <i class="fas fa-sync"></i> 복습 추가
-                        </button>
-                        <!-- 'Adjust Plan' button removed in favor of Chat AI -->
-                    </div>
                 </section>
 
                 <section class="card">
@@ -59,16 +53,16 @@
                         <input type="text" id="task-title" placeholder="학습 내용" required>
                         <div class="form-row">
                             <select id="task-subject" required>
-                                <option value="재무회계">재무회계 (김영덕)</option>
-                                <option value="세법">세법 (유은종/정우승)</option>
-                                <option value="원가회계">원가회계 (임세진)</option>
-                                <option value="재정학">재정학 (정병열)</option>
+                                <option value="재무회계">재무회계</option>
+                                <option value="세법">세법</option>
+                                <option value="원가회계">원가회계</option>
+                                <option value="재정학">재정학</option>
                             </select>
                             <select id="task-time" required>
+                                <option value="30">30분</option>
                                 <option value="60">1시간</option>
                                 <option value="120">2시간</option>
                                 <option value="180">3시간</option>
-                                <option value="240">4시간</option>
                             </select>
                             <button type="submit" class="btn btn-primary">추가</button>
                         </div>
@@ -86,7 +80,7 @@
 
             <!-- Settings View -->
             <div id="settings-view" class="view-content">
-                <section class="card">
+                 <section class="card">
                     <h2><i class="fas fa-cog"></i> 학습 환경 설정</h2>
                     <div class="settings-group">
                         <div class="setting-item">
@@ -98,19 +92,15 @@
                             <input type="time" id="end-time" value="22:00">
                         </div>
                         <div class="setting-item">
-                            <label>점심/저녁 시간 (시간)</label>
+                            <label>총 휴식 시간 (시간)</label>
                             <input type="number" id="break-time" value="2" step="0.5">
-                        </div>
-                        <div class="setting-item">
-                            <label>Gemini API Key (AI 코칭용)</label>
-                            <input type="password" id="api-key" placeholder="API Key를 입력하세요 (선택)">
                         </div>
                         <button id="save-settings-btn" class="btn btn-primary">설정 저장 및 반영</button>
                     </div>
                 </section>
                 <section class="card">
-                    <h2><i class="fas fa-info-circle"></i> 등록된 교재</h2>
-                    <ul class="book-list">
+                    <h2><i class="fas fa-book-reader"></i> 커리큘럼 정보</h2>
+                     <ul class="book-list">
                         <li><strong>재무회계:</strong> 김영덕 객관식 재무회계</li>
                         <li><strong>세법:</strong> 유은종·정우승 세법워크북/객관식세법</li>
                         <li><strong>원가회계:</strong> 임세진 원가관리회계</li>
@@ -127,7 +117,7 @@
                     <i class="fas fa-robot"></i> <span>CTA 학습 코치 피드백</span>
                 </div>
                 <div id="ai-feedback" class="ai-feedback-text">
-                    오늘의 학습을 시작해보세요! 월~금 10:00~17:00은 당신의 집중 골든타임입니다.
+                    자동 복습 시스템이 활성화되었습니다. 완료된 학습은 최적의 주기에 맞춰 자동으로 복습됩니다.
                 </div>
             </section>
         </footer>
@@ -143,7 +133,7 @@
             </div>
             <div class="chat-body" id="chat-body">
                 <div class="chat-message bot">
-                    안녕하세요! 학습 일정 조정이 필요하신가요? "진도 수정해줘" 또는 "오늘 늦었어"라고 말씀해주세요.
+                    안녕하세요! 학습 일정 조정이 필요하시면 "진도 수정해줘" 또는 "오늘 2시에 시작해" 라고 말씀해주세요.
                 </div>
             </div>
             <div class="chat-input-area">
