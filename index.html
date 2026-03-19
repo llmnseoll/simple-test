@@ -11,62 +11,66 @@
     <div class="app-container">
         <header class="main-header">
             <div class="header-top">
-                <h1><i class="fas fa-balance-scale"></i> CTA Pass Master</h1>
-                <div class="exam-countdown" id="exam-countdown">D-365</div>
+                <h1><i class="fas fa-graduation-cap"></i> CTA 합격 메이커</h1>
+                <div class="exam-countdown" id="exam-countdown">진도 계산 중...</div>
             </div>
             <nav class="view-tabs">
                 <button class="tab-btn active" data-view="daily">일간</button>
                 <button class="tab-btn" data-view="weekly">주간</button>
-                <button class="tab-btn" data-view="monthly">월간</button>
-                <button class="tab-btn" data-view="yearly">연간</button>
+                <button class="tab-btn" data-view="settings">설정</button>
             </nav>
         </header>
 
         <main id="view-container">
-            <!-- Daily View (Default) -->
+            <!-- Daily View -->
             <div id="daily-view" class="view-content active">
                 <section class="card summary-card">
                     <div class="progress-info">
-                        <h2>오늘의 진도</h2>
+                        <h2>오늘의 목표</h2>
                         <div class="progress-bar-container">
                             <div id="daily-progress-bar" class="progress-bar" style="width: 0%"></div>
                         </div>
                         <span id="daily-percentage">0%</span>
                     </div>
                     <div class="study-time-info">
-                        <p><i class="far fa-clock"></i> 잔여 학습 시간: <span id="remaining-time">5.5시간</span></p>
+                        <p><i class="far fa-clock"></i> 가용 시간: <span id="remaining-time">--</span></p>
                     </div>
                 </section>
 
                 <section class="card">
                     <div class="section-header">
-                        <h2><i class="fas fa-list-check"></i> 오늘의 학습 리스트</h2>
+                        <h2><i class="fas fa-book-open"></i> 학습 리스트</h2>
                         <input type="date" id="selected-date" class="small-date">
                     </div>
                     <ul id="task-list" class="task-list">
                         <!-- Tasks will be injected here -->
                     </ul>
-                    <button id="add-review-task" class="btn btn-outline btn-sm">
-                        <i class="fas fa-sync"></i> 복습 항목 추가
-                    </button>
+                    <div class="button-group">
+                        <button id="add-review-task" class="btn btn-outline btn-sm">
+                            <i class="fas fa-sync"></i> 복습 추가
+                        </button>
+                        <button id="adjust-plan-btn" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-magic"></i> 오늘부터 진도 재조정
+                        </button>
+                    </div>
                 </section>
 
                 <section class="card">
-                    <h2><i class="fas fa-plus-circle"></i> 직접 계획 추가</h2>
+                    <h2><i class="fas fa-plus-circle"></i> 수동 추가</h2>
                     <form id="add-task-form" class="compact-form">
-                        <input type="text" id="task-title" placeholder="학습 내용 (예: 부가가치세법 1장)" required>
+                        <input type="text" id="task-title" placeholder="학습 내용" required>
                         <div class="form-row">
                             <select id="task-subject" required>
-                                <option value="재무회계">재무회계</option>
-                                <option value="세법">세법</option>
-                                <option value="원가회계">원가회계</option>
-                                <option value="재정학">재정학</option>
+                                <option value="재무회계">재무회계 (김영덕)</option>
+                                <option value="세법">세법 (유은종/정우승)</option>
+                                <option value="원가회계">원가회계 (임세진)</option>
+                                <option value="재정학">재정학 (정병열)</option>
                             </select>
                             <select id="task-time" required>
-                                <option value="30">30분</option>
                                 <option value="60">1시간</option>
                                 <option value="120">2시간</option>
                                 <option value="180">3시간</option>
+                                <option value="240">4시간</option>
                             </select>
                             <button type="submit" class="btn btn-primary">추가</button>
                         </div>
@@ -74,23 +78,43 @@
                 </section>
             </div>
 
-            <!-- Weekly/Monthly/Yearly views (Simplified for now) -->
+            <!-- Weekly View -->
             <div id="weekly-view" class="view-content">
                 <section class="card">
-                    <h2><i class="fas fa-calendar-week"></i> 이번 주 학습 목표</h2>
+                    <h2><i class="fas fa-calendar-week"></i> 주간 학습 계획</h2>
                     <div id="weekly-goals" class="goals-list"></div>
                 </section>
             </div>
-            <div id="monthly-view" class="view-content">
+
+            <!-- Settings View -->
+            <div id="settings-view" class="view-content">
                 <section class="card">
-                    <h2><i class="fas fa-calendar-alt"></i> 이번 달 학습 로드맵</h2>
-                    <div id="monthly-goals" class="goals-list"></div>
+                    <h2><i class="fas fa-cog"></i> 학습 환경 설정</h2>
+                    <div class="settings-group">
+                        <div class="setting-item">
+                            <label>공부 시작 시간</label>
+                            <input type="time" id="start-time" value="09:00">
+                        </div>
+                        <div class="setting-item">
+                            <label>공부 종료 시간</label>
+                            <input type="time" id="end-time" value="22:00">
+                        </div>
+                        <div class="setting-item">
+                            <label>점심/저녁 시간 (시간)</label>
+                            <input type="number" id="break-time" value="2" step="0.5">
+                        </div>
+                        <button id="save-settings-btn" class="btn btn-primary">설정 저장 및 반영</button>
+                    </div>
                 </section>
-            </div>
-            <div id="yearly-view" class="view-content">
                 <section class="card">
-                    <h2><i class="fas fa-trophy"></i> 1년 합격 커리큘럼</h2>
-                    <div id="yearly-goals" class="goals-list"></div>
+                    <h2><i class="fas fa-info-circle"></i> 등록된 교재</h2>
+                    <ul class="book-list">
+                        <li><strong>재무회계:</strong> 김영덕 객관식 재무회계</li>
+                        <li><strong>세법:</strong> 유은종·정우승 세법워크북/객관식세법</li>
+                        <li><strong>원가회계:</strong> 임세진 원가관리회계</li>
+                        <li><strong>재정학:</strong> 정병열 재정학연습</li>
+                    </ul>
+                    <button id="reset-curriculum-btn" class="btn btn-danger btn-sm">진도 전체 초기화</button>
                 </section>
             </div>
         </main>
