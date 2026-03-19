@@ -1,37 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>CTA 합격 메이커 - 세무사 시험 플래너</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div id="lotto-numbers" class="lotto-numbers"></div>
-        <button id="generate-btn">Generate Numbers</button>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="header-top">
+                <h1><i class="fas fa-balance-scale"></i> CTA Pass Master</h1>
+                <div class="exam-countdown" id="exam-countdown">D-365</div>
+            </div>
+            <nav class="view-tabs">
+                <button class="tab-btn active" data-view="daily">일간</button>
+                <button class="tab-btn" data-view="weekly">주간</button>
+                <button class="tab-btn" data-view="monthly">월간</button>
+                <button class="tab-btn" data-view="yearly">연간</button>
+            </nav>
+        </header>
 
-        <hr class="divider">
+        <main id="view-container">
+            <!-- Daily View (Default) -->
+            <div id="daily-view" class="view-content active">
+                <section class="card summary-card">
+                    <div class="progress-info">
+                        <h2>오늘의 진도</h2>
+                        <div class="progress-bar-container">
+                            <div id="daily-progress-bar" class="progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span id="daily-percentage">0%</span>
+                    </div>
+                    <div class="study-time-info">
+                        <p><i class="far fa-clock"></i> 잔여 학습 시간: <span id="remaining-time">5.5시간</span></p>
+                    </div>
+                </section>
 
-        <section class="contact-section">
-            <h2>Partnership Inquiry</h2>
-            <form action="https://formspree.io/f/mkoqkngz" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                <section class="card">
+                    <div class="section-header">
+                        <h2><i class="fas fa-list-check"></i> 오늘의 학습 리스트</h2>
+                        <input type="date" id="selected-date" class="small-date">
+                    </div>
+                    <ul id="task-list" class="task-list">
+                        <!-- Tasks will be injected here -->
+                    </ul>
+                    <button id="add-review-task" class="btn btn-outline btn-sm">
+                        <i class="fas fa-sync"></i> 복습 항목 추가
+                    </button>
+                </section>
+
+                <section class="card">
+                    <h2><i class="fas fa-plus-circle"></i> 직접 계획 추가</h2>
+                    <form id="add-task-form" class="compact-form">
+                        <input type="text" id="task-title" placeholder="학습 내용 (예: 부가가치세법 1장)" required>
+                        <div class="form-row">
+                            <select id="task-subject" required>
+                                <option value="재무회계">재무회계</option>
+                                <option value="세법">세법</option>
+                                <option value="원가회계">원가회계</option>
+                                <option value="재정학">재정학</option>
+                            </select>
+                            <select id="task-time" required>
+                                <option value="30">30분</option>
+                                <option value="60">1시간</option>
+                                <option value="120">2시간</option>
+                                <option value="180">3시간</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">추가</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <!-- Weekly/Monthly/Yearly views (Simplified for now) -->
+            <div id="weekly-view" class="view-content">
+                <section class="card">
+                    <h2><i class="fas fa-calendar-week"></i> 이번 주 학습 목표</h2>
+                    <div id="weekly-goals" class="goals-list"></div>
+                </section>
+            </div>
+            <div id="monthly-view" class="view-content">
+                <section class="card">
+                    <h2><i class="fas fa-calendar-alt"></i> 이번 달 학습 로드맵</h2>
+                    <div id="monthly-goals" class="goals-list"></div>
+                </section>
+            </div>
+            <div id="yearly-view" class="view-content">
+                <section class="card">
+                    <h2><i class="fas fa-trophy"></i> 1년 합격 커리큘럼</h2>
+                    <div id="yearly-goals" class="goals-list"></div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <section class="card feedback-card">
+                <div class="ai-header">
+                    <i class="fas fa-robot"></i> <span>CTA 학습 코치 피드백</span>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                <div id="ai-feedback" class="ai-feedback-text">
+                    오늘의 학습을 시작해보세요! 월~금 10:00~17:00은 당신의 집중 골든타임입니다.
                 </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required placeholder="How can we partner together?"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </section>
+                <button id="get-feedback-btn" class="btn btn-secondary btn-sm">진도 분석 및 자동 조정</button>
+            </section>
+        </footer>
     </div>
     <script src="main.js"></script>
 </body>
